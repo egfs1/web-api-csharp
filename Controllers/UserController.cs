@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebAPI.Errors;
 using WebAPI.Services.Users;
+using WebAPI.Helpers;
 
 namespace WebAPI.Controllers
 {
@@ -15,7 +16,7 @@ namespace WebAPI.Controllers
             this.context = context;
         }
 
-        [Helpers.Authorize]
+        [Authorize]
         [HttpPut]
         [Route("update/{id}")]
         public async Task<ActionResult<User>> Update([FromBody] UpdateRequest request, string id)
@@ -29,7 +30,7 @@ namespace WebAPI.Controllers
             return Ok(user);
         }
 
-        [Helpers.Authorize]
+        [Authorize]
         [HttpDelete]
         [Route("delete/{id}")]
         public async Task<ActionResult> Delete(string id)
