@@ -20,8 +20,7 @@ namespace WebAPI.Controllers
         [Route("update/{id}")]
         public async Task<ActionResult<User>> Update([FromBody] UpdateRequest request, string id)
         {
-
-            if (!id.Equals(HttpContext.Items["UserId"])) throw new AppException("Unauthorazed");
+            if (!id.Equals(HttpContext.Items["UserId"])) throw new AppException("Unauthorized");
 
             UpdateUserService updateUserService = new(context);
 
@@ -35,7 +34,7 @@ namespace WebAPI.Controllers
         [Route("delete/{id}")]
         public async Task<ActionResult> Delete(string id)
         {
-            if (!id.Equals(HttpContext.Items["UserId"])) throw new AppException("Unauthorazed");
+            if (!id.Equals(HttpContext.Items["UserId"])) throw new AppException("Unauthorized");
 
             DeleteUserService deleteUserService = new(context);
 

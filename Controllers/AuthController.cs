@@ -24,11 +24,6 @@ namespace WebAPI.Controllers
         [Route("signup")]
         public async Task<ActionResult<List<object>>> SignUp([FromBody] SignUpRequest request)
         {
-
-            Console.WriteLine(request.Login);
-            Console.WriteLine(request.Email);
-            Console.WriteLine(request.Password);
-
             CreateUserService createUserService = new(context);
 
             SignInAuthService signInAuthService = new(context, appSettings);
@@ -62,7 +57,7 @@ namespace WebAPI.Controllers
         [Route("signout/{id}")]
         public async Task<ActionResult<bool>> SignOut(string id)
         {
-            if (!id.Equals(HttpContext.Items["UserId"])) throw new AppException("Unauthorazed");
+            if (!id.Equals(HttpContext.Items["UserId"])) throw new AppException("Unauthorized");
 
             SignOutAuthService signOutAuthService = new();
 
@@ -76,7 +71,6 @@ namespace WebAPI.Controllers
         [Route("me")]
         public ActionResult<User> Me([FromBody] MeRequest request)
         {
-
             MeAuthService meAuthService = new(context, appSettings);
 
             var user = meAuthService.Execute(request.Token);
