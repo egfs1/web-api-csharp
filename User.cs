@@ -1,8 +1,11 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
 namespace WebAPI
 {
+    [Index(nameof(Login), IsUnique = true)]
+    [Index(nameof(Email), IsUnique = true)]
     public class User
     {
         public User()

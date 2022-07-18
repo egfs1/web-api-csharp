@@ -21,11 +21,11 @@ namespace WebAPI.Services.Users
             // verify if new login or email is not used
             var findUserLogin = context.Users.Where(user => user.Login == login).FirstOrDefault();
 
-            if (findUserLogin != null && findUserLogin.Id != user.Id) throw new AppException("User already exists!");
+            if (findUserLogin != null && findUserLogin.Id != user.Id) throw new AppException("Login already exists!");
 
             var findUserEmail = context.Users.Where(user => user.Email == email).FirstOrDefault();
 
-            if (findUserEmail != null && findUserEmail.Id != user.Id) throw new AppException("User already exists!");
+            if (findUserEmail != null && findUserEmail.Id != user.Id) throw new AppException("Email already exists!");
 
             // verify if oldPassword match user password and it's not empty
             bool passwordMatch = BCrypt.Net.BCrypt.Verify(oldPassword, user.Password);
